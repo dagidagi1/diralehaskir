@@ -628,11 +628,11 @@ void MainPage(landlord* landlordsArr, int& landlordSize, traveler* travelersArr,
 		switch (choise)
 		{
 		case 1:
-			traveler_index = travelerSignIn(travelersSize, travelersArr);
+			//traveler_index = travelerSignIn(travelersSize, travelersArr);
 			cout << traveler_index;
 			break;
 		case 2:
-			landlord_index = landlordSignIn(landlordSize, landlordsArr);// -  change to duble pointer.
+			//landlord_index = landlordSignIn(landlordSize, landlordsArr);// -  change to duble pointer.
 			cout << landlord_index;
 			break;
 		case 3:
