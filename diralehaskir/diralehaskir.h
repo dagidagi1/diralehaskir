@@ -63,7 +63,7 @@ void PrintLandlordsAds(landlord ll);
 string NameInput();
 string PhoneInput();
 string PasswordInput();
-traveler NewTraveler();
+void NewTraveler(traveler& trv);
 void RegisterTraveler(traveler* travelersArr, int& size);
 string ValidId();
 string ValidEmail();
