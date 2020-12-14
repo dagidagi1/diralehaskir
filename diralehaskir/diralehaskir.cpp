@@ -714,21 +714,19 @@ string PasswordInput()
 }
 
 
-traveler NewTraveler()
+void NewTraveler(traveler& trv)
 {
-	traveler trv;
 	trv.fullName = NameInput();
 	trv.phoneNumber = PhoneInput();
 	trv.password = PasswordInput();
 	//cout << "NewTraveler: " << trv.fullName << endl;
 	//cout << "NewTraveler: " << trv.phoneNumber << endl;
 	//cout << "NewTraveler: " << trv.password << endl;
-	return trv;
 }
 void RegisterTraveler(traveler* travelersArr, int& size)
 {
 	RealloctravelersArr(travelersArr, size);
-	travelersArr[size - 1] = NewTraveler();
+	NewTraveler(travelersArr[size-1]);
 	//cout <<endl<<"dd: "<< trv->password;
 	//cout << travelersArr[size - 1].phoneNumber;
 }
