@@ -716,7 +716,7 @@ traveler NewTraveler()
 }
 void RegisterTraveler()
 {
-	RealloctravelersArr(travelers_arr, travelers_arr_size);
+	RealloctravelersArr();
 	travelers_arr[travelers_arr_size - 1] = NewTraveler();
 	//cout <<endl<<"dd: "<< trv->password;
 	//cout << travelersArr[size - 1].phoneNumber;
