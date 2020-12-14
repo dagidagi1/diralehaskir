@@ -562,9 +562,10 @@ void RealloctravelersArr(traveler* arr, int& size)
 }
 void ReallocLandlordsArr(landlord* arr, int size)
 {
-	landlord* tmp = new landlord[size + 1];
-	for (int i = 0; i < size; i++) tmp[i] = arr[i];
 	size++;
+	landlord* tmp = new landlord[size];
+	if (!tmp) cout << "Memory allocate fail!" << endl;
+	for (int i = 0; i < size - 1; i++) tmp[i] = arr[i];
 	if (arr) delete[] arr;
 	arr = tmp;
 }
