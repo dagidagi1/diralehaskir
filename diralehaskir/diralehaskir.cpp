@@ -774,10 +774,7 @@ void RegisterLandlord(landlord* landlordsArr, int& landlordSize, traveler* trave
 
 int main()
 {
-	landlord* landlord_arr = NULL;
-	int landlord_arr_size = 0;
-	traveler* travelers_arr = NULL;
-	int travelers_arr_size = 0;
+	
 	RegisterTraveler(travelers_arr, travelers_arr_size);
 	MainPage(landlord_arr, landlord_arr_size, travelers_arr, travelers_arr_size);
 	return 0;
