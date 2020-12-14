@@ -557,7 +557,7 @@ void RealloctravelersArr(traveler* arr, int& size)
 	traveler* tmp = new traveler[size];
 	if (!tmp) cout << "Memory allocate fail!" << endl;
 	for (int i = 0; i < size - 1; i++) tmp[i] = arr[i];
-	if(arr) delete[] arr;
+	if (arr) delete[] arr;
 	arr = tmp;
 }
 void ReallocLandlordsArr(landlord* arr, int size)
@@ -575,40 +575,28 @@ void Register(landlord* landlordsArr, int& landlordSize, traveler* travelersArr,
 	system("CLS");
 	int choise = 1;
 	bool flag = true;
-	while (choise != 3 && flag)
+	cout << "Register:" << endl
+		<< "1)Landlord." << endl
+		<< "2)Traveler." << endl
+		<< "3)Return to previous menu." << endl
+		<< "Please enter your choise: ";
+	cin >> choise;
+	if (choise == 1)
 	{
-		cout << "Register:" << endl
-			<< "1)Landlord." << endl
-			<< "2)Traveler." << endl
-			<< "3)Return to previous menu." << endl
-			<< "Please enter your choise: ";
-		cin >> choise;
-		switch (choise)
-		{
-		case 1:
-			RegisterLandlord(landlordsArr, landlordSize, travelersArr, travelersSize);
-			flag = false;
-			//update db
-			system("CLS");
-			break;
-		case 2:
-			RegisterTraveler(travelersArr, travelersSize);
-			flag = false;
-			//update db
-			//RealloctravelersArr(travelersArr, travelersSize);
-			//cout << trv->phoneNumber;
-			//travelersArr[travelersSize - 1] = NewTraveler();
-			system("CLS");
-			cout << "Traveler added successfuly!" << endl;
-			break;
-		case 3:
-			system("CLS");
-			break;
-		default:
-			cout << "Wrong choise!!\nTry again: ";
-			break;
-		}
+		RegisterLandlord(landlordsArr, landlordSize, travelersArr, travelersSize);
+		//update db
+		system("CLS");
+		cout << "Landlord successfuly added!" << endl;
 	}
+	else if (choise == 2)
+	{
+		RegisterTraveler(travelersArr, travelersSize);
+		//update db
+		system("CLS");
+		cout << "Traveler added successfuly!" << endl;
+	}
+	else if (choise == 3) return;
+	else cout << "Wrong choise!!" << endl;
 }
 
 void MainPage(landlord* landlordsArr, int& landlordSize, traveler* travelersArr, int& travelersSize)
@@ -727,7 +715,7 @@ void NewTraveler(traveler& trv)
 void RegisterTraveler(traveler* travelersArr, int& size)
 {
 	RealloctravelersArr(travelersArr, size);
-	NewTraveler(travelersArr[size-1]);
+	NewTraveler(travelersArr[size - 1]);
 	//cout <<endl<<"dd: "<< trv->password;
 	//cout << travelersArr[size - 1].phoneNumber;
 }
