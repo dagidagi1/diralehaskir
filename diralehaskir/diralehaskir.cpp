@@ -550,26 +550,26 @@ void LandlordsMenu(landlord ll)
 
 
 }
-void RealloctravelersArr(traveler* arr, int& size)
+void RealloctravelersArr()
 {
-	size++;
-	traveler* tmp = new traveler[size];
+	travelers_arr_size++;
+	traveler* tmp = new traveler[travelers_arr_size];
 	if (!tmp) cout << "Memory allocate fail!" << endl;
-	for (int i = 0; i < size - 1; i++) tmp[i] = arr[i];
-	if (arr) delete[] arr;
-	arr = tmp;
+	for (int i = 0; i < travelers_arr_size - 1; i++) tmp[i] = travelers_arr[i];
+	if (travelers_arr) delete[] travelers_arr;
+	travelers_arr = tmp;
 }
-void ReallocLandlordsArr(landlord* arr, int size)
+void ReallocLandlordsArr()
 {
-	size++;
-	landlord* tmp = new landlord[size];
+	landlord_arr_size++;
+	landlord* tmp = new landlord[landlord_arr_size];
 	if (!tmp) cout << "Memory allocate fail!" << endl;
-	for (int i = 0; i < size - 1; i++) tmp[i] = arr[i];
-	if (arr) delete[] arr;
-	arr = tmp;
+	for (int i = 0; i < landlord_arr_size - 1; i++) tmp[i] = landlord_arr[i];
+	if (landlord_arr) delete[] landlord_arr;
+	landlord_arr = tmp;
 }
 
-void Register(landlord* landlordsArr, int& landlordSize, traveler* travelersArr, int& travelersSize)
+void Register()
 {
 	system("CLS");
 	int choise = 1;
@@ -582,14 +582,14 @@ void Register(landlord* landlordsArr, int& landlordSize, traveler* travelersArr,
 	cin >> choise;
 	if (choise == 1)
 	{
-		RegisterLandlord(landlordsArr, landlordSize, travelersArr, travelersSize);
+		RegisterLandlord();
 		//update db
 		system("CLS");
 		cout << "Landlord successfuly added!" << endl;
 	}
 	else if (choise == 2)
 	{
-		RegisterTraveler(travelersArr, travelersSize);
+		RegisterTraveler();
 		//update db
 		system("CLS");
 		cout << "Traveler added successfuly!" << endl;
@@ -598,7 +598,7 @@ void Register(landlord* landlordsArr, int& landlordSize, traveler* travelersArr,
 	else cout << "Wrong choise!!" << endl;
 }
 
-void MainPage(landlord* landlordsArr, int& landlordSize, traveler* travelersArr, int& travelersSize)
+void MainPage()
 {
 	//system("CLS");
 	int landlord_index = NOT_FOUND;
@@ -624,7 +624,7 @@ void MainPage(landlord* landlordsArr, int& landlordSize, traveler* travelersArr,
 			cout << landlord_index;
 			break;
 		case 3:
-			Register(landlordsArr, landlordSize, travelersArr, travelersSize);
+			Register();
 			break;
 		case 4:
 			cout << "Good bye!";
@@ -713,10 +713,10 @@ traveler NewTraveler()
 	//cout << "NewTraveler: " << trv.password << endl;;
 	return trv;
 }
-void RegisterTraveler(traveler* travelersArr, int& size)
+void RegisterTraveler()
 {
-	RealloctravelersArr(travelersArr, size);
-	travelersArr[size - 1] = NewTraveler();
+	RealloctravelersArr();
+	travelers_arr[travelers_arr_size - 1] = NewTraveler();
 	//cout <<endl<<"dd: "<< trv->password;
 	//cout << travelersArr[size - 1].phoneNumber;
 }
@@ -756,26 +756,25 @@ string ValidEmail()
 	}
 	return email;
 }
-void RegisterLandlord(landlord* landlordsArr, int& landlordSize, traveler* travelersArr, int& travelersSize)
+void RegisterLandlord()
 {
-	RegisterTraveler(travelersArr, travelersSize);
+	RegisterTraveler();
 	landlord newLandlord;
-	newLandlord.fullName = travelersArr[travelersSize - 1].fullName;
-	newLandlord.phoneNumber = travelersArr[travelersSize - 1].phoneNumber;
-	newLandlord.password = travelersArr[travelersSize - 1].password;
+	newLandlord.fullName = travelers_arr[travelers_arr_size - 1].fullName;
+	newLandlord.phoneNumber = travelers_arr[travelers_arr_size - 1].phoneNumber;
+	newLandlord.password = travelers_arr[travelers_arr_size - 1].password;
 	newLandlord.id = ValidId();
 	newLandlord.email = ValidEmail();
 	newLandlord.sumOfDeals = 0;
 	newLandlord.adSize = 0;
-	ReallocLandlordsArr(landlordsArr, landlordSize);
-	landlordsArr[landlordSize - 1] = newLandlord;
+	ReallocLandlordsArr();
+	landlord_arr[landlord_arr_size - 1] = newLandlord;
 }
 
 int main()
 {
-	
-	RegisterTraveler(travelers_arr, travelers_arr_size);
-	MainPage(landlord_arr, landlord_arr_size, travelers_arr, travelers_arr_size);
+	RegisterTraveler();
+	MainPage();
 	return 0;
 }
 
