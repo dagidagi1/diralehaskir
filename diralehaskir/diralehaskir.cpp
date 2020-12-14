@@ -711,7 +711,7 @@ traveler NewTraveler()
 	trv.password = PasswordInput();
 	//cout << "NewTraveler: " << trv.fullName << endl;
 	//cout << "NewTraveler: " << trv.phoneNumber << endl;
-	//cout << "NewTraveler: " << trv.password << endl;
+	//cout << "NewTraveler: " << trv.password << endl;;
 	return trv;
 }
 void RegisterTraveler(traveler* travelersArr, int& size)
