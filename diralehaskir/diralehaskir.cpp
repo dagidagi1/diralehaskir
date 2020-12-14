@@ -58,7 +58,7 @@ int findLandlordById(int size, const landlord* const landlordArr, string id) {
 	return NOT_FOUND;
 }
 
-int travelerSignIn(int size, traveler** travelerArr) {
+int travelerSignIn() {
 	string tempName, tempPass;
 	cout << "***TRAVELER - LOG IN***" << endl << "Please enter details according to instructions" << endl;
 	//get name input
@@ -73,7 +73,7 @@ int travelerSignIn(int size, traveler** travelerArr) {
 		return NOT_FOUND;
 	}
 	//find index for traveler in array by name- assuming no two identical names
-	int index = findTravelerByName(size, *travelerArr, tempName);
+	int index = findTravelerByName(travelers_arr_size, travelers_arr, tempName);
 	if (index == NOT_FOUND) {//traveler not found
 		cout << "No such user..." << endl;
 		return NOT_FOUND;
@@ -90,7 +90,7 @@ int travelerSignIn(int size, traveler** travelerArr) {
 		cout << "Incorrect password...try again." << endl;
 		return NOT_FOUND;
 	}
-	if (tempPass != travelerArr[index]->password) {//password equal
+	if (tempPass != travelers_arr[index].password) {//password equal
 		cout << "Incorrect password...try again." << endl;
 		return not NOT_FOUND;
 	}
@@ -100,8 +100,7 @@ int travelerSignIn(int size, traveler** travelerArr) {
 //-------------find traveler by full name
 int findTravelerByName(int size, const traveler* travelerArr, string name)
 {
-	int i = 0;
-	for (; i < size; ++i) {
+	for (int i = 0; i < size; ++i) {
 		if (travelerArr[i].fullName == name)//traveler found
 			return i;
 	}
@@ -617,7 +616,7 @@ void MainPage(landlord* landlordsArr, int& landlordSize, traveler* travelersArr,
 		switch (choise)
 		{
 		case 1:
-			//traveler_index = travelerSignIn(travelersSize, travelersArr);
+			traveler_index = travelerSignIn();
 			cout << traveler_index;
 			break;
 		case 2:

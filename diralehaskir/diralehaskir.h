@@ -41,7 +41,7 @@ using namespace std;
 int landlordSignIn(int size, landlord** landlordArr);
 bool isStringAllDig(string str);
 int findLandlordById(int size, const landlord* const landlordArr, string id);
-int travelerSignIn(int size, traveler** travelerArr);
+int travelerSignIn();
 int findTravelerByName(int size, const traveler* travelerArr, string name);
 void landlordSignUp(int size, landlord* landlordArr);
 bool isStringAllLetters(string str);
