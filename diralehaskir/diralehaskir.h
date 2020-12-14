@@ -32,7 +32,10 @@
 
 const string AMENITIES_NAMES[AMENITIES] = { "disabledAccess", "wifi", "kitchen", "tv", "balcony", "washingMachine", "airConditioning", "swimmingPool", "parkingLot" };
 
-
+landlord* landlord_arr = NULL;
+int landlord_arr_size = 0;
+traveler* travelers_arr = NULL;
+int travelers_arr_size = 0;
 using namespace std;
 
 int landlordSignIn(int size, landlord** landlordArr);
