@@ -790,5 +790,6 @@ int main()
 	int travelers_arr_size = 0;
 	MainPage(landlord_arr, landlord_arr_size, travelers_arr, travelers_arr_size);
 	return 0;
+	//stam
 }
 
