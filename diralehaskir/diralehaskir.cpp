@@ -573,7 +573,8 @@ void Register(landlord** landlordsArr, int& landlordSize, traveler** travelersAr
 {
 	system("CLS");
 	int choise = 1;
-	while (choise != 3)
+	bool flag = true;
+	while (choise != 3 && flag)
 	{
 		cout << "Register:" << endl
 			<< "1)Landlord." << endl
@@ -585,11 +586,13 @@ void Register(landlord** landlordsArr, int& landlordSize, traveler** travelersAr
 		{
 		case 1:
 			RegisterLandlord(landlordsArr, landlordSize, travelersArr, travelersSize);
+			flag = false;
 			//update db
 			system("CLS");
 			break;
 		case 2:
 			RegisterTraveler(travelersArr, travelersSize);
+			flag = false;
 			//update db
 			//RealloctravelersArr(travelersArr, travelersSize);
 			//cout << trv->phoneNumber;
@@ -709,6 +712,8 @@ string PasswordInput()
 	} while (flag);
 	return buffer;
 }
+
+
 traveler* NewTraveler()
 {
 	traveler* trv = new traveler;
@@ -732,6 +737,7 @@ void RegisterTraveler(traveler** travelersArr, int& size)
 	//cout <<endl<<"dd: "<< trv->password;
 	cout << travelersArr[size - 1]->phoneNumber;
 }
+
 string ValidId()
 {
 	string id;
