@@ -58,19 +58,19 @@ void DeleteAd(ad* adsArr, int& adsize, int index);
 ad NewAd();
 void PrintAmenities(amenities obj);
 void LandlordsMenu(landlord ll);
-void RealloctravelersArr(traveler* arr, int& size);
-void ReallocLandlordsArr(landlord* arr, int size);
-void Register(landlord* landlordsArr, int& landlordSize, traveler* travelersArr, int& travelersSize);
-void MainPage(landlord* landlordsArr, int& landlordSize, traveler* travelersArr, int& travelersSize);
+void RealloctravelersArr();
+void ReallocLandlordsArr();
+void Register();
+void MainPage();
 void PrintLandlordsAds(landlord ll);
 string NameInput();
 string PhoneInput();
 string PasswordInput();
 void NewTraveler(traveler&);
-void RegisterTraveler(traveler* travelersArr, int& size);
+void RegisterTraveler();
 string ValidId();
 string ValidEmail();
-void RegisterLandlord(landlord* landlordsArr, int& landlordSize, traveler* travelersArr, int& travelersSize);
+void RegisterLandlord();
 
 
 
