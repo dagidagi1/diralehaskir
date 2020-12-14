@@ -35,7 +35,39 @@ const string AMENITIES_NAMES[AMENITIES] = { "disabledAccess", "wifi", "kitchen",
 
 using namespace std;
 
-
+int landlordSignIn(int size, landlord** landlordArr);
+bool isStringAllDig(string str);
+int findLandlordById(int size, const landlord* const landlordArr, string id);
+int travelerSignIn(int size, traveler** travelerArr);
+int findTravelerByName(int size, const traveler* travelerArr, string name);
+void landlordSignUp(int size, landlord* landlordArr);
+bool isStringAllLetters(string str);
+void travelerSignUp(traveler* travelerArr, int size);
+string ValidLocation();
+int ValidInput(int min, int max);
+bool ValidInput(char truevaluechar);
+bool ValidInput(int num, int min, int max);
+amenities amenitiesCtor();
+void RealocateAdsPointer(ad* adsArr, int& adsize);
+void PrintAd(ad obj);
+void EditAdMenu(ad* ad);
+void DeleteAd(ad* adsArr, int& adsize, int index);
+ad NewAd();
+void PrintAmenities(amenities obj);
+void LandlordsMenu(landlord ll);
+void RealloctravelersArr(traveler** arr, int& size);
+void ReallocLandlordsArr(landlord** arr, int size);
+void Register(landlord** landlordsArr, int& landlordSize, traveler** travelersArr, int& travelersSize);
+void MainPage(landlord** landlordsArr, int& landlordSize, traveler** travelersArr, int& travelersSize);
+void PrintLandlordsAds(landlord ll);
+string NameInput();
+string PhoneInput();
+string PasswordInput();
+traveler* NewTraveler();
+void RegisterTraveler(traveler** travelersArr, int& size);
+string ValidId();
+string ValidEmail();
+void RegisterLandlord(landlord** landlordsArr, int& landlordSize, traveler** travelersArr, int& travelersSize);
 
 
 
