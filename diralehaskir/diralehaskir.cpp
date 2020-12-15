@@ -517,9 +517,9 @@ void LandlordsMenu(int index)
 		cout << ADSBREAK << endl;
 
 		cout << "Please select an option:" << endl
-			<< "1) edit an ad." << endl
-			<< "2) add new ad." << endl
-			<< "3) delete an ad." << endl
+			<< "1) Edit an ad." << endl
+			<< "2) Add new ad." << endl
+			<< "3) Delete an ad." << endl
 			<< "4) Exit." << endl
 			<< "enter your choice: ";
 		cin >> choise;
