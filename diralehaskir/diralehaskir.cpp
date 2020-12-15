@@ -4,7 +4,7 @@
 //#include <datetimeapi.h>// or another maybe??? 
 using namespace std;
 
-int landlordSignIn(int size, landlord** landlordArr) {//returns true if login successful
+int landlordSignIn() {//returns true if login successful
 	string tempId, tempPass;
 	cout << "***LANDLORD - LOG IN***" << endl << "Please enter details according to instructions" << endl;
 	//get id input
@@ -17,7 +17,7 @@ int landlordSignIn(int size, landlord** landlordArr) {//returns true if login su
 		return NOT_FOUND;
 	}
 	//find index for landlord in array by id- assuming no two identical id's
-	int index = findLandlordById(size, *landlordArr, tempId);
+	int index = findLandlordById(landlord_arr_size, landlord_arr, tempId);
 	if (index == NOT_FOUND) {//landlord not found
 		cout << "No such ID..." << endl;
 		return NOT_FOUND;
@@ -34,7 +34,7 @@ int landlordSignIn(int size, landlord** landlordArr) {//returns true if login su
 		cout << "Incorrect password...try again." << endl;
 		return NOT_FOUND;
 	}
-	if (tempPass != landlordArr[index]->password) {//password equal
+	if (tempPass != landlord_arr[index].password) {//password equal
 		cout << "Incorrect password...try again." << endl;
 		return NOT_FOUND;
 	}
@@ -343,16 +343,16 @@ amenities amenitiesCtor()
 	obj.parkingLot = ValidInput('y');
 	return obj;
 }
-void RealocateAdsPointer(ad* adsArr, int& adsize)
+void RealocateAdsPointer(int landlord_index)
 {
 	//reallocates the pointer and changes the size:
 	ad* tmp;
-	tmp = new ad[adsize + 1];
-	for (int i = 0; i < adsize; i++)
-		tmp[i] = adsArr[i];
-	adsize++;
-	delete[] adsArr;
-	adsArr = tmp;
+	tmp = new ad[landlord_arr[landlord_index].adSize + 1];
+	for (int i = 0; i < landlord_arr[landlord_index].adSize; i++)
+		tmp[i] = landlord_arr[landlord_index].properties[i];
+	landlord_arr[landlord_index].adSize++;
+	if (landlord_arr[landlord_index].properties) delete[] landlord_arr[landlord_index].properties;
+	landlord_arr[landlord_index].properties = tmp;
 }
 void PrintAd(ad obj)
 {
@@ -369,17 +369,17 @@ void PrintAd(ad obj)
 	PrintAmenities(obj.ameNities);
 }
 //-------------edit ad
-void EditAdMenu(ad* ad)
+void EditAdMenu(int ll_index, int ad_index)
 {
 	int choose = 1;
 	while (choose)
 	{
 		system("CLS");
 		cout << "EDIT AD MENU \nYour ad:" << endl;
-		PrintAd(*ad);
+		PrintAd(landlord_arr[ll_index].properties[ad_index]);
 		cout << ADSBREAK << endl;
 		cout << "What do you want to edit?" << endl;
-		cout << "1) Change avilability (now: " << ad->available << ")." << endl
+		cout << "1) Change avilability (now: " << landlord_arr[ll_index].properties[ad_index].available << ")." << endl
 			<< "2) Change Description." << endl
 			<< "3) Change Price." << endl
 			<< "4) Change Discount." << endl
@@ -394,41 +394,41 @@ void EditAdMenu(ad* ad)
 		switch (choose)
 		{
 		case 1:
-			ad->available = !ad->available;
+			landlord_arr[ll_index].properties[ad_index].available = !landlord_arr[ll_index].properties[ad_index].available;
 			break;
 		case 2:
 			cout << "Enter new description:";
 			cin.ignore();
-			getline(cin, ad->description);
+			getline(cin, landlord_arr[ll_index].properties[ad_index].description);
 			break;
 		case 3:
 			cout << "Enter new price: ";
-			ad->price = ValidInput(ZERO, INT_MAX);
+			landlord_arr[ll_index].properties[ad_index].price = ValidInput(ZERO, INT_MAX);
 			break;
 		case 4:
 			cout << "Enter new discount: ";
-			ad->discount = ValidInput(ZERO, 100);
+			landlord_arr[ll_index].properties[ad_index].discount = ValidInput(ZERO, 100);
 			break;
 		case 5:
 			cout << "Number of people(up to 30): ";
-			ad->numOfPeople = ValidInput(1, 30);
+			landlord_arr[ll_index].properties[ad_index].numOfPeople = ValidInput(1, 30);
 			break;
 		case 6:
 			cout << "Number of rooms(up to 15): ";
-			ad->numOfRooms = ValidInput(1, 15);
+			landlord_arr[ll_index].properties[ad_index].numOfRooms = ValidInput(1, 15);
 			break;
 		case 7:
 			cout << "Number of beds(up to 30): ";
-			ad->numOfBeds = ValidInput(1, 30);
+			landlord_arr[ll_index].properties[ad_index].numOfBeds = ValidInput(1, 30);
 			break;
 		case 8:
 			cout << "Select amenities: ";
-			ad->ameNities = amenitiesCtor();
+			landlord_arr[ll_index].properties[ad_index].ameNities = amenitiesCtor();
 			break;
 		case 9:
 			cout << "Enter a new attraction:";
 			cin.ignore();
-			getline(cin, ad->attraction);
+			getline(cin, landlord_arr[ll_index].properties[ad_index].attraction);
 			break;
 		case 0:
 			return;
@@ -464,6 +464,7 @@ ad NewAd()
 	newAd.available = true;
 	cout << "New ad: " << endl;
 	cout << "Ad description: ";
+	cin.ignore();
 	getline(cin, newAd.description);
 	cout << "Price: ";
 	newAd.price = ValidInput(ZERO, INT_MAX);
@@ -499,16 +500,16 @@ void PrintAmenities(amenities obj)
 	str[str.length() - 2] = '.';
 	cout << str << endl;
 }
-void LandlordsMenu(landlord ll)
+void LandlordsMenu(int index)
 {
 	int choise = 1;
 	cout << "LANDLORD MENU:" << endl;
-	cout << "Total profit: " << ll.sumOfDeals << endl;
-	if (ll.adSize)
-		for (int i = 0; i < ll.adSize; i++)
+	cout << "Total profit: " << landlord_arr[index].sumOfDeals << endl;
+	if (landlord_arr[index].adSize)
+		for (int i = 0; i < landlord_arr[index].adSize; i++)
 		{
 			cout << ADSBREAK << endl << "\tAd no: " << i + 1 << endl;
-			PrintAd(ll.properties[i]);
+			PrintAd(landlord_arr[index].properties[i]);
 		}
 	cout << ADSBREAK << endl;
 	int input;
@@ -525,17 +526,17 @@ void LandlordsMenu(landlord ll)
 		{
 		case 1:
 			cout << "Please enter ad number: ";
-			input = ValidInput(1, ll.adSize) - 1;
-			EditAdMenu(&ll.properties[input]);
+			input = ValidInput(1, landlord_arr[index].adSize) - 1;
+			EditAdMenu(index,input);
 			break;
 		case 2:
-			RealocateAdsPointer(ll.properties, ll.adSize);
-			ll.properties[ll.adSize - 1] = NewAd();
+			RealocateAdsPointer(index);
+			landlord_arr[index].properties[landlord_arr[index].adSize - 1] = NewAd();
 			break;
 		case 3:
 			cout << "Please enter ad number: ";
-			input = ValidInput(1, ll.adSize) - 1;
-			DeleteAd(ll.properties, ll.adSize, input);
+			input = ValidInput(1, landlord_arr[index].adSize) - 1;
+			DeleteAd(landlord_arr[index].properties, landlord_arr[index].adSize, input);
 			break;
 		case 4:
 			//exit
@@ -620,7 +621,8 @@ void MainPage()
 			cout << traveler_index;
 			break;
 		case 2:
-			//landlord_index = landlordSignIn(landlordSize, landlordsArr);// -  change to duble pointer.
+			landlord_index = landlordSignIn();
+			LandlordsMenu(landlord_index);
 			cout << landlord_index;
 			break;
 		case 3:
@@ -628,6 +630,7 @@ void MainPage()
 			break;
 		case 4:
 			cout << "Good bye!";
+			//delete allocated memory.
 			break;
 		default:
 			cout << "Wrong choise!!\nTry again: ";
@@ -773,7 +776,6 @@ void RegisterLandlord()
 
 int main()
 {
-	RegisterTraveler();
 	MainPage();
 	return 0;
 }
