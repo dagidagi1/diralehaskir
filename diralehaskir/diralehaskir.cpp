@@ -440,21 +440,21 @@ void EditAdMenu(int ll_index, int ad_index)
 		}
 	}
 }
-void DeleteAd(ad* adsArr, int& adsize, int index)
+void DeleteAd(int landlord_index, int ad_index)
 {
 	//delete the ad at [index] location.
-	if (!adsize) cout << "No ads to delete!!!" << endl;
+	if (!landlord_arr[landlord_index].adSize) cout << "No ads to delete!!!" << endl;
 	else
 	{
-		ad* tmp = new ad[adsize - 1];
-		for (int i = 0, j = 0; i < adsize - 1; j++, i++)
+		ad* tmp = new ad[landlord_arr[landlord_index].adSize - 1];
+		for (int i = 0, j = 0; i < landlord_arr[landlord_index].adSize - 1; j++, i++)
 		{
-			if (i == index) j++;
-			tmp[i] = adsArr[j];
+			if (i == ad_index) j++;
+			tmp[i] = landlord_arr[landlord_index].properties[j];
 		}
-		delete[] adsArr;
-		adsArr = tmp;
-		adsize--;
+		delete[] landlord_arr[landlord_index].properties;
+		landlord_arr[landlord_index].properties = tmp;
+		landlord_arr[landlord_index].adSize--;
 	}
 
 }
