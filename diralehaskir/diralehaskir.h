@@ -53,7 +53,7 @@ bool ValidInput(int num, int min, int max);
 amenities amenitiesCtor();
 void RealocateAdsPointer(int landlord_index);
 void PrintAd(ad obj);
-void EditAdMenu(ad* ad);
+void EditAdMenu(int ll_index, int ad_index);
 void DeleteAd(int landlord_index, int ad_index);
 ad NewAd();
 void PrintAmenities(amenities obj);

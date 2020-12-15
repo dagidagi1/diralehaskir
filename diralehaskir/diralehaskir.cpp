@@ -536,7 +536,7 @@ void LandlordsMenu(int index)
 		case 3:
 			cout << "Please enter ad number: ";
 			input = ValidInput(1, landlord_arr[index].adSize) - 1;
-			DeleteAd(landlord_arr[index].properties, landlord_arr[index].adSize, input);
+			DeleteAd(index, input);
 			break;
 		case 4:
 			//exit
