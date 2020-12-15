@@ -659,6 +659,41 @@ void RegisterLandlord()
 	ReallocLandlordsArr();
 	landlord_arr[landlord_arr_size - 1] = newLandlord;
 }
+void PrintTraveler(traveler trv)
+{
+	cout << ADSBREAK << endl;
+	cout << "fullName: " << trv.fullName << "." << endl
+		<< "phoneNumber: " << trv.phoneNumber << "." << endl
+		<< "password: " << trv.password << "." << endl
+		<< "order: ";
+	printDate(date d);
+	cout << ADSBREAK << endl;
+}
+void PrintLandlord(landlord ll)
+{
+	cout << ADSBREAK << endl;
+	cout << "fullName: " << ll.fullName << "." << endl
+		<< "phoneNumber: " << ll.phoneNumber << "." << endl
+		<< "password: " << ll.password << "." << endl
+		<< "id: " << ll.id << "." << endl
+		<< "email: " << ll.email << "." << endl
+		<< "sumOfDeals: " << ll.sumOfDeals << "." << endl
+		<< "adSize: " << ll.adSize << "." << endl;
+	for (int i = 0; i < ll.adSize; i++)
+		PrintAd(ll.properties[i]);
+	cout << ADSBREAK << endl;
+}
+void FilesCheck()
+{
+	cout << ADSBREAK << endl << "\tLandlords:" << endl << ADSBREAK << endl;
+	for (int i = 0; i < landlord_arr_size; i++)
+		PrintLandlord(landlord_arr[i]);
+	cout << ADSBREAK << endl << "\tTravelers:" << endl << ADSBREAK << endl;
+	for (int i = 0; i < travelers_arr_size; i++)
+		PrintTraveler(travelers_arr[i]);
+}
+
+
 
 int main()
 {

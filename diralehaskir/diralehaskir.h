@@ -37,6 +37,7 @@ int landlord_arr_size = 0;
 traveler* travelers_arr = NULL;
 int travelers_arr_size = 0;
 
+
 //Register:
 void Register();
 traveler NewTraveler();
