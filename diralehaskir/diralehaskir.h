@@ -10,12 +10,11 @@
 #include <fstream>
 #include <ctime>
 #include <ctype.h>
+using namespace std;
 
 #define ADSBREAK "========================================="
 #define ZERO 0
 #define MAX_EMAIL 8 //רק לקידומת
-#define GMAIL "@gmail.com"
-#define WALLA "@walla.co.il"
 #define MAX_ID 9
 #define MAX_PHONE 10
 #define MAX_NAME 15 //enough???
@@ -31,48 +30,52 @@
 #define MAX_YEAR 2030
 
 const string AMENITIES_NAMES[AMENITIES] = { "disabledAccess", "wifi", "kitchen", "tv", "balcony", "washingMachine", "airConditioning", "swimmingPool", "parkingLot" };
-
+//Landlord arr + size
 landlord* landlord_arr = NULL;
 int landlord_arr_size = 0;
+//Traveler arr + size
 traveler* travelers_arr = NULL;
 int travelers_arr_size = 0;
-using namespace std;
 
+//Register:
+void Register();
+traveler NewTraveler();
+void RegisterTraveler();
+void RegisterLandlord();
+//Sing-in funcs:
 int landlordSignIn();
-bool isStringAllDig(string str);
 int findLandlordById(string id);
 int travelerSignIn();
 int findTravelerByName(string name);
-void landlordSignUp(int size, landlord* landlordArr);
+//input validation:
+bool isStringAllDig(string str);
 bool isStringAllLetters(string str);
-void travelerSignUp(traveler* travelerArr, int size);
 string ValidLocation();
 int ValidInput(int min, int max);
 bool ValidInput(char truevaluechar);
 bool ValidInput(int num, int min, int max);
-amenities amenitiesCtor();
-void LandlordsLoginMenu(int ll_index, int trv_index);
-void RealocateAdsPointer(int landlord_index);
-void PrintAd(ad obj);
-void EditAdMenu(int ll_index, int ad_index);
-void DeleteAd(int landlord_index, int ad_index);
-ad NewAd();
-void PrintAmenities(amenities obj);
-void LandlordsMenu(int index);
-void RealloctravelersArr();
-void ReallocLandlordsArr();
-void Register();
-void MainPage();
-void PrintLandlordsAds(landlord ll);
 string NameInput();
 string PhoneInput();
 string PasswordInput();
-void NewTraveler(traveler&);
-void RegisterTraveler();
 string ValidId();
 string ValidEmail();
-void RegisterLandlord();
-
+amenities amenitiesCtor();
+//Menus:
+void MainPage();
+void LandlordsLoginMenu(int ll_index, int trv_index);
+void LandlordsMenu(int index);
+void PrintAd(ad obj);
+void EditAdMenu(int ll_index, int ad_index);
+//Ads manipulations:
+void DeleteAd(int landlord_index, int ad_index);
+ad NewAd();
+//Realloc:
+void RealloctravelersArr();
+void ReallocLandlordsArr();
+void RealocateAdsPointer(int landlord_index);
+//Output:
+void PrintLandlordsAds(landlord ll);
+void PrintAmenities(amenities obj);
 
 
 
