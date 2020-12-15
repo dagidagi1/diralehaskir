@@ -51,6 +51,7 @@ int ValidInput(int min, int max);
 bool ValidInput(char truevaluechar);
 bool ValidInput(int num, int min, int max);
 amenities amenitiesCtor();
+void LandlordsLoginMenu(int ll_index, int trv_index);
 void RealocateAdsPointer(int landlord_index);
 void PrintAd(ad obj);
 void EditAdMenu(int ll_index, int ad_index);

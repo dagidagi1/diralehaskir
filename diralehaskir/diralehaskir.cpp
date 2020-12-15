@@ -553,6 +553,36 @@ void LandlordsMenu(int index)
 
 
 }
+void LandlordsLoginMenu(int ll_index, int trv_index)
+{
+	int choise = 1;
+	while (choise != 3)
+	{
+		cout << "Please select user type:"
+			<< "1) Landlord." << endl
+			<< "2) Traveler." << endl
+			<< "3) Exit." << endl
+			<< "Please enter your choise:" << endl;
+		cin >> choise;
+		switch (choise)
+		{
+		case 1:
+			LandlordsMenu(ll_index);
+			break;
+		case 2:
+			//TravelerMenu(trv_index);
+			break;
+		case 3:
+			cout << "Good bye!";
+			break;
+		default:
+			cout << "Wrong choise!!\nTry again: ";
+			break;
+		}
+
+	}
+}
+
 void RealloctravelersArr()
 {
 	travelers_arr_size++;
@@ -620,12 +650,11 @@ void MainPage()
 		{
 		case 1:
 			traveler_index = travelerSignIn();
-			cout << traveler_index;
 			break;
 		case 2:
 			landlord_index = landlordSignIn();
-			LandlordsMenu(landlord_index);
-			cout << landlord_index;
+			traveler_index = findTravelerByName(travelers_arr[landlord_index].fullName);
+			LandlordsLoginMenu(landlord_index, traveler_index);
 			break;
 		case 3:
 			Register();
