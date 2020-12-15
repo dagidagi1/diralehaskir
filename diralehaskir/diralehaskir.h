@@ -40,9 +40,9 @@ using namespace std;
 
 int landlordSignIn();
 bool isStringAllDig(string str);
-int findLandlordById(int size, const landlord* const landlordArr, string id);
+int findLandlordById(string id);
 int travelerSignIn();
-int findTravelerByName(int size, const traveler* travelerArr, string name);
+int findTravelerByName(string name);
 void landlordSignUp(int size, landlord* landlordArr);
 bool isStringAllLetters(string str);
 void travelerSignUp(traveler* travelerArr, int size);
