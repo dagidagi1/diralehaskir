@@ -406,7 +406,7 @@ void EditAdMenu(int ll_index, int ad_index)
 			break;
 		case 4:
 			cout << "Enter new discount: ";
-			landlord_arr[ll_index].properties[ad_index].discount = ValidInput(ZERO, 100);
+			landlord_arr[ll_index].properties[ad_index].discount = ValidInput(ZERO, landlord_arr[ll_index].properties[ad_index].price);
 			break;
 		case 5:
 			cout << "Number of people(up to 30): ";
@@ -529,15 +529,19 @@ void LandlordsMenu(int index)
 			cout << "Please enter ad number: ";
 			input = ValidInput(1, landlord_arr[index].adSize) - 1;
 			EditAdMenu(index, input);
+			//update db
 			break;
 		case 2:
 			RealocateAdsPointer(index);
 			landlord_arr[index].properties[landlord_arr[index].adSize - 1] = NewAd();
+			landlord_arr[index].properties[landlord_arr[index].adSize - 1].email = landlord_arr[index].email;
+			//update db
 			break;
 		case 3:
 			cout << "Please enter ad number: ";
 			input = ValidInput(1, landlord_arr[index].adSize) - 1;
 			DeleteAd(index, input);
+			//update db
 			break;
 		case 4:
 			//exit
@@ -557,7 +561,7 @@ void LandlordsLoginMenu(int ll_index, int trv_index)
 	int choise = 1;
 	while (choise != 3)
 	{
-		cout << "Please select user type:"
+		cout << "Please select user type:" << endl
 			<< "1) Landlord." << endl
 			<< "2) Traveler." << endl
 			<< "3) Exit." << endl
