@@ -503,18 +503,20 @@ void PrintAmenities(amenities obj)
 void LandlordsMenu(int index)
 {
 	int choise = 1;
-	cout << "LANDLORD MENU:" << endl;
-	cout << "Total profit: " << landlord_arr[index].sumOfDeals << endl;
-	if (landlord_arr[index].adSize)
-		for (int i = 0; i < landlord_arr[index].adSize; i++)
-		{
-			cout << ADSBREAK << endl << "\tAd no: " << i + 1 << endl;
-			PrintAd(landlord_arr[index].properties[i]);
-		}
-	cout << ADSBREAK << endl;
 	int input;
 	while (choise != 4)
 	{
+		system("CLS");
+		cout << "LANDLORD MENU:" << endl;
+		cout << "Total profit: " << landlord_arr[index].sumOfDeals << endl;
+		if (landlord_arr[index].adSize)
+			for (int i = 0; i < landlord_arr[index].adSize; i++)
+			{
+				cout << ADSBREAK << endl << "\tAd no: " << i + 1 << endl;
+				PrintAd(landlord_arr[index].properties[i]);
+			}
+		cout << ADSBREAK << endl;
+
 		cout << "Please select an option:" << endl
 			<< "1) edit an ad." << endl
 			<< "2) add new ad." << endl
@@ -527,7 +529,7 @@ void LandlordsMenu(int index)
 		case 1:
 			cout << "Please enter ad number: ";
 			input = ValidInput(1, landlord_arr[index].adSize) - 1;
-			EditAdMenu(index,input);
+			EditAdMenu(index, input);
 			break;
 		case 2:
 			RealocateAdsPointer(index);
