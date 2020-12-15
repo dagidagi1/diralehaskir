@@ -17,7 +17,7 @@ int landlordSignIn() {//returns true if login successful
 		return NOT_FOUND;
 	}
 	//find index for landlord in array by id- assuming no two identical id's
-	int index = findLandlordById(landlord_arr_size, landlord_arr, tempId);
+	int index = findLandlordById(tempId);
 	if (index == NOT_FOUND) {//landlord not found
 		cout << "No such ID..." << endl;
 		return NOT_FOUND;
@@ -49,10 +49,9 @@ bool isStringAllDig(string str) {//check id the string is all digits
 	return true;
 }
 //-------------find landlord by id
-int findLandlordById(int size, const landlord* const landlordArr, string id) {
-	int i = 0;
-	for (; i < size; ++i) {
-		if (landlordArr[i].id == id)//if equal
+int findLandlordById(string id) {
+	for (int i = 0; i < landlord_arr_size; ++i) {
+		if (landlord_arr[i].id == id)//if equal
 			return i;
 	}
 	return NOT_FOUND;
@@ -73,7 +72,7 @@ int travelerSignIn() {
 		return NOT_FOUND;
 	}
 	//find index for traveler in array by name- assuming no two identical names
-	int index = findTravelerByName(travelers_arr_size, travelers_arr, tempName);
+	int index = findTravelerByName(tempName);
 	if (index == NOT_FOUND) {//traveler not found
 		cout << "No such user..." << endl;
 		return NOT_FOUND;
@@ -98,10 +97,10 @@ int travelerSignIn() {
 }
 
 //-------------find traveler by full name
-int findTravelerByName(int size, const traveler* travelerArr, string name)
+int findTravelerByName(string name)
 {
-	for (int i = 0; i < size; ++i) {
-		if (travelerArr[i].fullName == name)//traveler found
+	for (int i = 0; i < travelers_arr_size; ++i) {
+		if (travelers_arr[i].fullName == name)//traveler found
 			return i;
 	}
 	return NOT_FOUND;
@@ -536,7 +535,7 @@ void LandlordsMenu(int index)
 		case 3:
 			cout << "Please enter ad number: ";
 			input = ValidInput(1, landlord_arr[index].adSize) - 1;
-			DeleteAd(landlord_arr[index].properties, landlord_arr[index].adSize, input);
+			DeleteAd(index, input);
 			break;
 		case 4:
 			//exit
