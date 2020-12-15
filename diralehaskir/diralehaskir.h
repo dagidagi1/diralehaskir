@@ -54,7 +54,7 @@ amenities amenitiesCtor();
 void RealocateAdsPointer(ad* adsArr, int& adsize);
 void PrintAd(ad obj);
 void EditAdMenu(ad* ad);
-void DeleteAd(ad* adsArr, int& adsize, int index);
+void DeleteAd(int landlord_index, int ad_index);
 ad NewAd();
 void PrintAmenities(amenities obj);
 void LandlordsMenu(landlord ll);
